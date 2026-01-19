@@ -70,8 +70,21 @@ const fetchUser = async (req, res) => {
     }
 }
 
+const logout = async (req, res) => {
+    try {
+        return res
+            .status(200)
+            .clearCookie("token")
+            .json({ success: true, message: "User logged out successfully" })
+    } catch (error) {
+        return res.status(500).json({ success: false, message: "Logout failed", error })
+    }
+}
+
+
 export {
     signup,
     login,
-    fetchUser
+    fetchUser, 
+    logout
 }
